@@ -2,8 +2,10 @@ import { redirect } from "next/navigation";
 import Dashboard from "./dashboard";
 import { headers } from "next/headers";
 import { authClient } from "@/lib/auth-client";
+import { Suspense } from "react";
+import Loader from "@/components/loader";
 
-export default async function DashboardPage() {
+async function DashboardContent() {
 	const session = await authClient.getSession({
 		fetchOptions: {
 			headers: await headers(),
@@ -21,5 +23,13 @@ export default async function DashboardPage() {
 			<p>Welcome {session.user.name}</p>
 			<Dashboard session={session} />
 		</div>
+	);
+}
+
+export default function DashboardPage() {
+	return (
+		<Suspense fallback={<Loader />}>
+			<DashboardContent />
+		</Suspense>
 	);
 }
