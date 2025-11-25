@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import { routing } from "../../../i18n/routing";
 import Loader from "@/components/loader";
+import { ReactLenis } from "lenis/react";
 
 type Props = {
   children: React.ReactNode;
@@ -38,7 +39,14 @@ async function LocaleProvider({
 export default function LocaleLayout({ children, params }: Props) {
   return (
     <Suspense fallback={<Loader />}>
-      <LocaleProvider params={params}>{children}</LocaleProvider>
+      <LocaleProvider params={params}>
+        <ReactLenis
+          root
+          options={{ lerp: 0.1, duration: 1.5, smoothWheel: true }}
+        >
+          {children}
+        </ReactLenis>
+      </LocaleProvider>
     </Suspense>
   );
 }
