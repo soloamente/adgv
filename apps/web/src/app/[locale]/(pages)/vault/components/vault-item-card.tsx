@@ -54,7 +54,7 @@ export function VaultItemCard({ item, iconContent }: VaultItemCardProps) {
             href={{ pathname: item.sourceUrl }}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-primary hover:text-primary/80 absolute top-4 right-4 inline-flex items-center gap-1 text-sm font-medium transition-colors"
+            className="text-primary hover:text-primary/80 font-sf-pro-rounded absolute top-4 right-4 inline-flex items-center gap-1 text-sm transition-colors"
           >
             {iconContent && <Icon content={iconContent} />}
           </Link>
@@ -90,7 +90,7 @@ export function VaultItemCard({ item, iconContent }: VaultItemCardProps) {
         )}
       </div>
       <div className="flex w-full items-center justify-between">
-        <h1 className="text-xl font-medium">{title}</h1>
+        <h1 className="text-xl font-semibold">{title}</h1>
         {item.price && <span className="text-muted-foreground">${item.price}</span>}
       </div>
     </div>

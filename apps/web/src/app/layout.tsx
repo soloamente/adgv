@@ -28,6 +28,49 @@ const Foss = localFont({
   preload: true,
 })
 
+const sfProRounded = localFont({
+  variable: "--font-sf-pro-rounded",
+  src: [
+    {
+      path: "../../public/fonts/SF Pro/SF-Pro-Rounded-Ultralight.otf",
+      weight: "100",
+    },
+    {
+      path: "../../public/fonts/SF Pro/SF-Pro-Rounded-Thin.otf",
+      weight: "200",
+    },
+    {
+      path: "../../public/fonts/SF Pro/SF-Pro-Rounded-Light.otf",
+      weight: "300",
+    },
+    {
+      path: "../../public/fonts/SF Pro/SF-Pro-Rounded-Regular.otf",
+      weight: "400",
+    },
+    {
+      path: "../../public/fonts/SF Pro/SF-Pro-Rounded-Medium.otf",
+      weight: "500",
+    },
+    {
+      path: "../../public/fonts/SF Pro/SF-Pro-Rounded-Semibold.otf",
+      weight: "600",
+    },
+    {
+      path: "../../public/fonts/SF Pro/SF-Pro-Rounded-Bold.otf",
+      weight: "700",
+    },
+    {
+      path: "../../public/fonts/SF Pro/SF-Pro-Rounded-Heavy.otf",
+      weight: "800",
+    },
+    {
+      path: "../../public/fonts/SF Pro/SF-Pro-Rounded-Black.otf",
+      weight: "900",
+    },
+  ],
+  display: "swap",
+})
+
 const shipporiMincho = Shippori_Mincho({
   variable: "--font-shippori-mincho",
   weight: "600",
@@ -60,7 +103,7 @@ export default function RootLayout({
   return (
     <html lang={locale} suppressHydrationWarning>
       <body
-        className={`${inter.variable} ${shipporiMincho.variable} ${
+        className={`${inter.variable} ${shipporiMincho.variable} ${sfProRounded.variable} ${
           Foss.variable
         } ${getFont(locale)}`}
       >

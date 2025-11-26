@@ -3,29 +3,31 @@
  * @description Search input component for filtering vault items
  */
 
-"use client";
+"use client"
 
-import { useState, useEffect } from "react";
-import { useDebounce } from "use-debounce";
-import { Icon } from "basehub/react-icon";
+import { useEffect, useState } from "react"
+
+import { Icon } from "basehub/react-icon"
+import { useDebounce } from "use-debounce"
+
 interface VaultSearchBarProps {
   /**
    * Placeholder text for the search input
    */
-  placeholder?: string;
+  placeholder?: string
   /**
    * Icon content from BaseHub
    */
-  iconContent?: string;
+  iconContent?: string
   /**
    * Callback fired when search query changes (debounced)
    */
-  onSearchChange?: (query: string) => void;
+  onSearchChange?: (query: string) => void
   /**
    * Debounce delay in milliseconds
    * @default 300
    */
-  debounceMs?: number;
+  debounceMs?: number
 }
 
 /**
@@ -33,27 +35,26 @@ interface VaultSearchBarProps {
  * Handles search input with debouncing using use-debounce hook
  */
 
-
 export function VaultSearchBar({
   placeholder = "Search...",
   iconContent,
   onSearchChange,
   debounceMs = 300,
 }: VaultSearchBarProps) {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [debouncedQuery] = useDebounce(searchQuery, debounceMs);
+  const [searchQuery, setSearchQuery] = useState("")
+  const [debouncedQuery] = useDebounce(searchQuery, debounceMs)
 
   // Notify parent of debounced search query changes
   useEffect(() => {
     if (onSearchChange) {
-      onSearchChange(debouncedQuery);
+      onSearchChange(debouncedQuery)
     }
-  }, [debouncedQuery, onSearchChange]);
+  }, [debouncedQuery, onSearchChange])
 
   return (
     <label
       htmlFor="vault-search"
-      className="bg-card flex w-xs items-center justify-between rounded-full px-3.75 py-1.75 text-sm sh transition-all duration-200"
+      className="bg-card sh flex w-xs items-center justify-between rounded-full px-3.75 py-1.75 text-sm font-medium transition-all duration-200"
     >
       <input
         id="vault-search"
@@ -61,10 +62,10 @@ export function VaultSearchBar({
         placeholder={placeholder}
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
-        className="placeholder:text-search-placeholder w-full truncate focus-visible:outline-none focus-visible:ring-offset-0"
+        className="placeholder:text-search-placeholder w-full truncate focus-visible:ring-offset-0 focus-visible:outline-none"
         spellCheck={false}
       />
       {iconContent && <Icon content={iconContent} />}
     </label>
-  );
+  )
 }

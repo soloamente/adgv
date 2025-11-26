@@ -3,26 +3,26 @@
  * @description Client component that handles search filtering and displays vault items
  */
 
-"use client";
+"use client"
 
-import { useState, useMemo } from "react";
-import { VaultSearchBar } from "./vault-search-bar";
-import { VaultGrid } from "./vault-grid";
-import { VaultEmptyState } from "./vault-empty-state";
-import { filterVaultItems } from "../utils";
-import type { VaultItem } from "../types";
+import { useMemo, useState } from "react"
+
+import type { VaultItem } from "../types"
+import { filterVaultItems } from "../utils"
+import { VaultEmptyState } from "./vault-empty-state"
+import { VaultGrid } from "./vault-grid"
+import { VaultSearchBar } from "./vault-search-bar"
 
 interface VaultPageContentProps {
   /**
    * Array of vault items from BaseHub
    */
-  items: VaultItem[];
+  items: VaultItem[]
   /**
    * Magnifier icon content from BaseHub
    */
-  magnifierIcon?: string;
-  globePointerIcon?: string;
-
+  magnifierIcon?: string
+  globePointerIcon?: string
 }
 
 /**
@@ -34,22 +34,18 @@ export function VaultPageContent({
   magnifierIcon,
   globePointerIcon,
 }: VaultPageContentProps) {
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState("")
 
   // Filter items based on search query
-  const filteredItems = useMemo(
-    () => filterVaultItems(items, searchQuery),
-    [items, searchQuery]
-  );
+  const filteredItems = useMemo(() => filterVaultItems(items, searchQuery), [items, searchQuery])
 
   return (
-    <main className="container mx-auto flex min-h-screen font-inter flex-col items-center gap-8 px-4 py-8 md:px-8">
+    <main className="font-sf-pro-rounded container mx-auto flex min-h-screen flex-col items-center gap-8 px-4 py-8 md:px-8">
       {/* Search Bar */}
       <VaultSearchBar
         placeholder="Search..."
         iconContent={magnifierIcon}
         onSearchChange={setSearchQuery}
-        
       />
 
       {/* Content */}
@@ -65,5 +61,5 @@ export function VaultPageContent({
         <VaultGrid items={filteredItems} iconContent={globePointerIcon} />
       )}
     </main>
-  );
+  )
 }
