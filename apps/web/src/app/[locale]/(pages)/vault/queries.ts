@@ -12,6 +12,7 @@ import type { QueryGenqlSelection } from "basehub";
 export const vaultPageQuery: QueryGenqlSelection = {
   icons: {
     magnifier: true,
+    globePointer: true,
   },
   vault: {
     items: {
@@ -19,6 +20,7 @@ export const vaultPageQuery: QueryGenqlSelection = {
       _title: true,
       _slug: true,
       title: true,
+      price: true,
       description: true,
       sourceUrl: true,
       image: {

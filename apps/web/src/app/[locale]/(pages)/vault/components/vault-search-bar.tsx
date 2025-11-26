@@ -8,8 +8,6 @@
 import { useState, useEffect } from "react";
 import { useDebounce } from "use-debounce";
 import { Icon } from "basehub/react-icon";
-import { Input } from "@/components/ui/input";
-
 interface VaultSearchBarProps {
   /**
    * Placeholder text for the search input
@@ -34,8 +32,10 @@ interface VaultSearchBarProps {
  * Search bar component for the vault page
  * Handles search input with debouncing using use-debounce hook
  */
+
+
 export function VaultSearchBar({
-  placeholder = "Search vault items...",
+  placeholder = "Search...",
   iconContent,
   onSearchChange,
   debounceMs = 300,
@@ -53,15 +53,15 @@ export function VaultSearchBar({
   return (
     <label
       htmlFor="vault-search"
-      className="bg-background flex w-xs items-center justify-between rounded-full px-3.75 py-1.75 text-sm  transition-all duration-200"
+      className="bg-card flex w-xs items-center justify-between rounded-full px-3.75 py-1.75 text-sm sh transition-all duration-200"
     >
-      <Input
+      <input
         id="vault-search"
         type="search"
         placeholder={placeholder}
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
-        className="placeholder:text-search-placeholder w-full truncate border-0 bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0"
+        className="placeholder:text-search-placeholder w-full truncate focus-visible:outline-none focus-visible:ring-offset-0"
         spellCheck={false}
       />
       {iconContent && <Icon content={iconContent} />}

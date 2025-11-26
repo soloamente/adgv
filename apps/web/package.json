@@ -7,7 +7,9 @@
     "dev:basehub": "basehub dev",
     "dev:next": "next dev --port=3001",
     "build": "basehub && next build",
-    "start": "next start"
+    "start": "next start",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "dependencies": {
     "@adgv/auth": "workspace:*",

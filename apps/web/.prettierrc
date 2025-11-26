@@ -3,15 +3,56 @@
   "singleQuote": false,
   "arrowParens": "always",
   "tabWidth": 2,
-  "printWidth": 80,
-  "trailingComma": "none",
-  "endOfLine": "auto",
-  "plugins": ["prettier-plugin-tailwindcss", "prettier-plugin-glsl"],
+  "useTabs": false,
+  "printWidth": 100,
+  "trailingComma": "es5",
+  "endOfLine": "lf",
+  "bracketSpacing": true,
+  "bracketSameLine": false,
+  "singleAttributePerLine": false,
+  "plugins": [
+    "prettier-plugin-glsl",
+    "@trivago/prettier-plugin-sort-imports",
+    "prettier-plugin-tailwindcss"
+  ],
+  "importOrder": [
+    "^react",
+    "^next",
+    "<THIRD_PARTY_MODULES>",
+    "^@/(.*)$",
+    "^[./]"
+  ],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true,
+  "importOrderGroupNamespaceSpecifiers": true,
+  "importOrderCaseInsensitive": true,
   "overrides": [
     {
       "files": ["*.frag", "*.vert", "*.glsl"],
       "options": {
         "parser": "glsl-parser"
+      }
+    },
+    {
+      "files": ["*.json", "*.jsonc"],
+      "options": {
+        "parser": "json",
+        "trailingComma": "none"
+      }
+    },
+    {
+      "files": ["*.md", "*.mdx"],
+      "options": {
+        "parser": "markdown",
+        "printWidth": 80,
+        "proseWrap": "always"
+      }
+    },
+    {
+      "files": ["*.yml", "*.yaml"],
+      "options": {
+        "parser": "yaml",
+        "tabWidth": 2
       }
     }
   ]

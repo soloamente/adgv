@@ -21,6 +21,8 @@ interface VaultPageContentProps {
    * Magnifier icon content from BaseHub
    */
   magnifierIcon?: string;
+  globePointerIcon?: string;
+
 }
 
 /**
@@ -30,6 +32,7 @@ interface VaultPageContentProps {
 export function VaultPageContent({
   items,
   magnifierIcon,
+  globePointerIcon,
 }: VaultPageContentProps) {
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -43,9 +46,10 @@ export function VaultPageContent({
     <main className="container mx-auto flex min-h-screen font-inter flex-col items-center gap-8 px-4 py-8 md:px-8">
       {/* Search Bar */}
       <VaultSearchBar
-        placeholder="Numero pratica, stato, cliente..."
+        placeholder="Search..."
         iconContent={magnifierIcon}
         onSearchChange={setSearchQuery}
+        
       />
 
       {/* Content */}
@@ -58,7 +62,7 @@ export function VaultPageContent({
           }
         />
       ) : (
-        <VaultGrid items={filteredItems} />
+        <VaultGrid items={filteredItems} iconContent={globePointerIcon} />
       )}
     </main>
   );

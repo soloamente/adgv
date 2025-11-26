@@ -1,0 +1,54 @@
+# Dependencies
+node_modules
+.pnp
+.pnp.js
+
+# Build outputs
+dist
+build
+.next
+out
+*.tsbuildinfo
+
+# Environment variables
+.env
+.env*.local
+
+# Logs
+logs
+*.log
+
+# Cache
+.cache
+.turbo
+.vercel
+
+# Generated files
+basehub-types.d.ts
+next-env.d.ts
+
+# Package manager files
+bun.lockb
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# IDE
+.vscode
+.idea
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Testing
+coverage
+.nyc_output
+
+# Misc
+*.tgz
+tmp
+temp
+
+
+

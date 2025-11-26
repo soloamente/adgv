@@ -279,6 +279,7 @@ export interface Icons {
     _slugPath: Scalars['String']
     _sys: BlockDocumentSys
     _title: Scalars['String']
+    globePointer: (Scalars['String'] | null)
     magnifier: (Scalars['String'] | null)
     __typename: 'Icons'
 }
@@ -426,12 +427,13 @@ export interface VaultItem {
     categories: (CategoryItemComponent[] | null)
     description: (Scalars['String'] | null)
     image: (MediaBlockUnion | null)
+    price: (Scalars['Float'] | null)
     sourceUrl: (Scalars['String'] | null)
     title: (Scalars['String'] | null)
     __typename: 'VaultItem'
 }
 
-export type VaultItemOrderByEnum = '_sys_createdAt__ASC' | '_sys_createdAt__DESC' | '_sys_hash__ASC' | '_sys_hash__DESC' | '_sys_id__ASC' | '_sys_id__DESC' | '_sys_lastModifiedAt__ASC' | '_sys_lastModifiedAt__DESC' | '_sys_slug__ASC' | '_sys_slug__DESC' | '_sys_title__ASC' | '_sys_title__DESC' | 'brands__ASC' | 'brands__DESC' | 'categories__ASC' | 'categories__DESC' | 'description__ASC' | 'description__DESC' | 'image__ASC' | 'image__DESC' | 'sourceUrl__ASC' | 'sourceUrl__DESC' | 'title__ASC' | 'title__DESC'
+export type VaultItemOrderByEnum = '_sys_createdAt__ASC' | '_sys_createdAt__DESC' | '_sys_hash__ASC' | '_sys_hash__DESC' | '_sys_id__ASC' | '_sys_id__DESC' | '_sys_lastModifiedAt__ASC' | '_sys_lastModifiedAt__DESC' | '_sys_slug__ASC' | '_sys_slug__DESC' | '_sys_title__ASC' | '_sys_title__DESC' | 'brands__ASC' | 'brands__DESC' | 'categories__ASC' | 'categories__DESC' | 'description__ASC' | 'description__DESC' | 'image__ASC' | 'image__DESC' | 'price__ASC' | 'price__DESC' | 'sourceUrl__ASC' | 'sourceUrl__DESC' | 'title__ASC' | 'title__DESC' | 'untitled__ASC' | 'untitled__DESC'
 
 export interface _AgentStart {
     _agentKey: Scalars['String']
@@ -934,6 +936,7 @@ export interface IconsGenqlSelection{
     _slugPath?: boolean | number
     _sys?: BlockDocumentSysGenqlSelection
     _title?: boolean | number
+    globePointer?: boolean | number
     magnifier?: boolean | number
     __typename?: boolean | number
     __fragmentOn?: "Icons"
@@ -1208,13 +1211,14 @@ export interface VaultItemGenqlSelection{
     categories?: CategoryItemComponentGenqlSelection
     description?: boolean | number
     image?: MediaBlockUnionGenqlSelection
+    price?: boolean | number
     sourceUrl?: boolean | number
     title?: boolean | number
     __typename?: boolean | number
     __fragmentOn?: "VaultItem"
 }
 
-export interface VaultItemFilterInput {AND?: (VaultItemFilterInput | null),OR?: (VaultItemFilterInput | null),_id?: (StringFilter | null),_slug?: (StringFilter | null),_sys_apiNamePath?: (StringFilter | null),_sys_createdAt?: (DateFilter | null),_sys_hash?: (StringFilter | null),_sys_id?: (StringFilter | null),_sys_idPath?: (StringFilter | null),_sys_lastModifiedAt?: (DateFilter | null),_sys_slug?: (StringFilter | null),_sys_slugPath?: (StringFilter | null),_sys_title?: (StringFilter | null),_title?: (StringFilter | null),brands?: (VaultItemFilterInput__brands_0___brandItem | null),categories?: (VaultItemFilterInput__categories_0___categoryItem | null),description?: (StringFilter | null),sourceUrl?: (StringFilter | null),title?: (StringFilter | null)}
+export interface VaultItemFilterInput {AND?: (VaultItemFilterInput | null),OR?: (VaultItemFilterInput | null),_id?: (StringFilter | null),_slug?: (StringFilter | null),_sys_apiNamePath?: (StringFilter | null),_sys_createdAt?: (DateFilter | null),_sys_hash?: (StringFilter | null),_sys_id?: (StringFilter | null),_sys_idPath?: (StringFilter | null),_sys_lastModifiedAt?: (DateFilter | null),_sys_slug?: (StringFilter | null),_sys_slugPath?: (StringFilter | null),_sys_title?: (StringFilter | null),_title?: (StringFilter | null),brands?: (VaultItemFilterInput__brands_0___brandItem | null),categories?: (VaultItemFilterInput__categories_0___categoryItem | null),description?: (StringFilter | null),price?: (NumberFilter | null),sourceUrl?: (StringFilter | null),title?: (StringFilter | null)}
 
 export interface VaultItemFilterInput__brands_0___brandItem {_id?: (StringFilter | null),_slug?: (StringFilter | null),_sys_apiNamePath?: (StringFilter | null),_sys_createdAt?: (DateFilter | null),_sys_hash?: (StringFilter | null),_sys_id?: (StringFilter | null),_sys_idPath?: (StringFilter | null),_sys_lastModifiedAt?: (DateFilter | null),_sys_slug?: (StringFilter | null),_sys_slugPath?: (StringFilter | null),_sys_title?: (StringFilter | null),_title?: (StringFilter | null),name?: (StringFilter | null)}
 

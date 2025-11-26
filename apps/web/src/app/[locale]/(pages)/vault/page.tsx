@@ -18,6 +18,7 @@ export default function VaultPage() {
           <VaultPageContent
             items={vault?.items ?? []}
             magnifierIcon={icons?.magnifier ?? ""}
+            globePointerIcon={icons?.globePointer ?? ""}
           />
         );
       }}
