@@ -51,6 +51,10 @@ export function VaultSearchBar({
     }
   }, [debouncedQuery, onSearchChange])
 
+  const handleClear = () => {
+    setSearchQuery("")
+  }
+
   return (
     <label
       htmlFor="vault-search"
@@ -58,14 +62,41 @@ export function VaultSearchBar({
     >
       <input
         id="vault-search"
-        type="search"
+        type="text"
         placeholder={placeholder}
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
         className="placeholder:text-search-placeholder w-full truncate focus-visible:ring-offset-0 focus-visible:outline-none"
         spellCheck={false}
       />
-      {iconContent && <Icon content={iconContent} />}
+      <div className="flex items-center gap-1">
+        {searchQuery ? (
+          <button
+            type="button"
+            onClick={handleClear}
+            className="text-muted-foreground group flex items-center justify-center rounded transition-colors"
+            aria-label="Clear search"
+          >
+            <span className="bg-background group-hover:text-foreground text-muted-foreground cursor-pointer rounded-lg px-2 py-1.5 text-sm leading-none font-medium transition-colors duration-200">
+              <Icon
+                content={iconContent ?? ""}
+                components={{
+                  svg: (props) => <svg {...props} style={{ width: "14px", height: "14px" }} />,
+                }}
+              />
+            </span>
+          </button>
+        ) : (
+          <div className="flex items-center gap-1">
+            <span className="bg-background text-muted-foreground rounded-lg px-2 py-1.5 text-sm leading-none font-medium">
+              ctrl
+            </span>
+            <span className="bg-background text-muted-foreground rounded-lg px-2.5 py-1.5 text-sm leading-none font-medium">
+              s
+            </span>
+          </div>
+        )}
+      </div>
     </label>
   )
 }

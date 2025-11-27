@@ -27,7 +27,7 @@ export function VaultItemCard({ item, iconContent }: VaultItemCardProps) {
   const imageMedia = isBlockImage(item.image) ? item.image : null
 
   return (
-    <div className="group bg-card relative flex aspect-square h-full flex-col items-start justify-center overflow-hidden rounded-3xl px-5 py-4">
+    <div className="group bg-background relative flex aspect-square h-full flex-col items-start justify-center overflow-hidden rounded-3xl px-5 py-4">
       {/* Media display */}
       {imageMedia && (
         <div className="relative h-full w-full">

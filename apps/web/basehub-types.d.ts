@@ -99,7 +99,7 @@ export interface BlockColor {
     __typename: 'BlockColor'
 }
 
-export type BlockDocument = (BrandItemComponent | Brands | Categories | CategoryItemComponent | Icons | Vault | VaultItem | _AgentStart | brandItemComponent_AsList | categoryItemComponent_AsList | vaultItem_AsList) & { __isUnion?: true }
+export type BlockDocument = (BrandItemComponent | Brands | Categories | CategoryItemComponent | Icons | TagItemComponent | Tags | Vault | VaultItem | _AgentStart | brandItemComponent_AsList | categoryItemComponent_AsList | tagItemComponent_AsList | vaultItem_AsList) & { __isUnion?: true }
 
 export interface BlockDocumentSys {
     apiNamePath: Scalars['String']
@@ -158,7 +158,7 @@ export interface BlockImage {
     __typename: 'BlockImage'
 }
 
-export type BlockList = (Brands | Categories | Vault | brandItemComponent_AsList | categoryItemComponent_AsList | vaultItem_AsList) & { __isUnion?: true }
+export type BlockList = (Brands | Categories | Tags | Vault | brandItemComponent_AsList | categoryItemComponent_AsList | tagItemComponent_AsList | vaultItem_AsList) & { __isUnion?: true }
 
 export interface BlockOgImage {
     height: Scalars['Int']
@@ -258,11 +258,11 @@ export interface CategoryItemComponent {
     _slugPath: Scalars['String']
     _sys: BlockDocumentSys
     _title: Scalars['String']
-    categoryName: (Scalars['String'] | null)
+    name: (Scalars['String'] | null)
     __typename: 'CategoryItemComponent'
 }
 
-export type CategoryItemComponentOrderByEnum = '_sys_createdAt__ASC' | '_sys_createdAt__DESC' | '_sys_hash__ASC' | '_sys_hash__DESC' | '_sys_id__ASC' | '_sys_id__DESC' | '_sys_lastModifiedAt__ASC' | '_sys_lastModifiedAt__DESC' | '_sys_slug__ASC' | '_sys_slug__DESC' | '_sys_title__ASC' | '_sys_title__DESC' | 'categoryName__ASC' | 'categoryName__DESC' | 'untitled__ASC' | 'untitled__DESC'
+export type CategoryItemComponentOrderByEnum = '_sys_createdAt__ASC' | '_sys_createdAt__DESC' | '_sys_hash__ASC' | '_sys_hash__DESC' | '_sys_id__ASC' | '_sys_id__DESC' | '_sys_lastModifiedAt__ASC' | '_sys_lastModifiedAt__DESC' | '_sys_slug__ASC' | '_sys_slug__DESC' | '_sys_title__ASC' | '_sys_title__DESC' | 'name__ASC' | 'name__DESC' | 'untitled__ASC' | 'untitled__DESC'
 
 export interface GetUploadSignedURL {
     signedURL: Scalars['String']
@@ -279,6 +279,8 @@ export interface Icons {
     _slugPath: Scalars['String']
     _sys: BlockDocumentSys
     _title: Scalars['String']
+    arrowUpRight: (Scalars['String'] | null)
+    deleteLeftFilled: (Scalars['String'] | null)
     globePointer: (Scalars['String'] | null)
     magnifier: (Scalars['String'] | null)
     __typename: 'Icons'
@@ -345,6 +347,8 @@ export interface Query {
     categories: Categories
     categoryItem: CategoryItemComponent
     icons: Icons
+    tagItem: TagItemComponent
+    tags: Tags
     vault: Vault
     __typename: 'Query'
 }
@@ -369,6 +373,42 @@ export interface SearchHighlight {
     /** HTML snippet with <mark> tags around the matched terms */
     snippet: Scalars['String']
     __typename: 'SearchHighlight'
+}
+
+export interface TagItemComponent {
+    _analyticsKey: Scalars['String']
+    _dashboardUrl: Scalars['String']
+    /** Array of search highlight information with field names and HTML markup */
+    _highlight: (SearchHighlight[] | null)
+    _id: Scalars['String']
+    _idPath: Scalars['String']
+    _slug: Scalars['String']
+    _slugPath: Scalars['String']
+    _sys: BlockDocumentSys
+    _title: Scalars['String']
+    name: (Scalars['String'] | null)
+    __typename: 'TagItemComponent'
+}
+
+export type TagItemComponentOrderByEnum = '_sys_createdAt__ASC' | '_sys_createdAt__DESC' | '_sys_hash__ASC' | '_sys_hash__DESC' | '_sys_id__ASC' | '_sys_id__DESC' | '_sys_lastModifiedAt__ASC' | '_sys_lastModifiedAt__DESC' | '_sys_slug__ASC' | '_sys_slug__DESC' | '_sys_title__ASC' | '_sys_title__DESC' | 'name__ASC' | 'name__DESC' | 'untitled__ASC' | 'untitled__DESC'
+
+export interface Tags {
+    _analyticsKey: Scalars['String']
+    _dashboardUrl: Scalars['String']
+    _id: Scalars['String']
+    _idPath: Scalars['String']
+    _meta: ListMeta
+    /** The key used to search from the frontend. */
+    _searchKey: Scalars['String']
+    _slug: Scalars['String']
+    _slugPath: Scalars['String']
+    _sys: BlockDocumentSys
+    _title: Scalars['String']
+    /** Returns the first item in the list, or null if the list is empty. Useful when you expect only one result. */
+    item: (TagItemComponent | null)
+    /** Returns the list of items after filtering and paginating according to the arguments sent by the client. */
+    items: TagItemComponent[]
+    __typename: 'Tags'
 }
 
 export interface TransactionStatus {
@@ -429,11 +469,12 @@ export interface VaultItem {
     image: (MediaBlockUnion | null)
     price: (Scalars['Float'] | null)
     sourceUrl: (Scalars['String'] | null)
+    tags: (TagItemComponent[] | null)
     title: (Scalars['String'] | null)
     __typename: 'VaultItem'
 }
 
-export type VaultItemOrderByEnum = '_sys_createdAt__ASC' | '_sys_createdAt__DESC' | '_sys_hash__ASC' | '_sys_hash__DESC' | '_sys_id__ASC' | '_sys_id__DESC' | '_sys_lastModifiedAt__ASC' | '_sys_lastModifiedAt__DESC' | '_sys_slug__ASC' | '_sys_slug__DESC' | '_sys_title__ASC' | '_sys_title__DESC' | 'brands__ASC' | 'brands__DESC' | 'categories__ASC' | 'categories__DESC' | 'description__ASC' | 'description__DESC' | 'image__ASC' | 'image__DESC' | 'price__ASC' | 'price__DESC' | 'sourceUrl__ASC' | 'sourceUrl__DESC' | 'title__ASC' | 'title__DESC' | 'untitled__ASC' | 'untitled__DESC'
+export type VaultItemOrderByEnum = '_sys_createdAt__ASC' | '_sys_createdAt__DESC' | '_sys_hash__ASC' | '_sys_hash__DESC' | '_sys_id__ASC' | '_sys_id__DESC' | '_sys_lastModifiedAt__ASC' | '_sys_lastModifiedAt__DESC' | '_sys_slug__ASC' | '_sys_slug__DESC' | '_sys_title__ASC' | '_sys_title__DESC' | 'brands__ASC' | 'brands__DESC' | 'categories__ASC' | 'categories__DESC' | 'description__ASC' | 'description__DESC' | 'image__ASC' | 'image__DESC' | 'price__ASC' | 'price__DESC' | 'sourceUrl__ASC' | 'sourceUrl__DESC' | 'tags__ASC' | 'tags__DESC' | 'title__ASC' | 'title__DESC' | 'untitled__ASC' | 'untitled__DESC'
 
 export interface _AgentStart {
     _agentKey: Scalars['String']
@@ -537,6 +578,7 @@ export interface _agents {
 export interface _components {
     brandItem: brandItemComponent_AsList
     categoryItem: categoryItemComponent_AsList
+    tagItem: tagItemComponent_AsList
     vaultItem: vaultItem_AsList
     __typename: '_components'
 }
@@ -577,6 +619,25 @@ export interface categoryItemComponent_AsList {
     /** Returns the list of items after filtering and paginating according to the arguments sent by the client. */
     items: CategoryItemComponent[]
     __typename: 'categoryItemComponent_AsList'
+}
+
+export interface tagItemComponent_AsList {
+    _analyticsKey: Scalars['String']
+    _dashboardUrl: Scalars['String']
+    _id: Scalars['String']
+    _idPath: Scalars['String']
+    _meta: ListMeta
+    /** The key used to search from the frontend. */
+    _searchKey: Scalars['String']
+    _slug: Scalars['String']
+    _slugPath: Scalars['String']
+    _sys: BlockDocumentSys
+    _title: Scalars['String']
+    /** Returns the first item in the list, or null if the list is empty. Useful when you expect only one result. */
+    item: (TagItemComponent | null)
+    /** Returns the list of items after filtering and paginating according to the arguments sent by the client. */
+    items: TagItemComponent[]
+    __typename: 'tagItemComponent_AsList'
 }
 
 export interface vaultItem_AsList {
@@ -661,11 +722,14 @@ export interface BlockDocumentGenqlSelection{
     on_Categories?: CategoriesGenqlSelection
     on_CategoryItemComponent?: CategoryItemComponentGenqlSelection
     on_Icons?: IconsGenqlSelection
+    on_TagItemComponent?: TagItemComponentGenqlSelection
+    on_Tags?: TagsGenqlSelection
     on_Vault?: VaultGenqlSelection
     on_VaultItem?: VaultItemGenqlSelection
     on__AgentStart?: _AgentStartGenqlSelection
     on_brandItemComponent_AsList?: brandItemComponent_AsListGenqlSelection
     on_categoryItemComponent_AsList?: categoryItemComponent_AsListGenqlSelection
+    on_tagItemComponent_AsList?: tagItemComponent_AsListGenqlSelection
     on_vaultItem_AsList?: vaultItem_AsListGenqlSelection
     __typename?: boolean | number
     __fragmentOn?: "BlockDocument"
@@ -751,9 +815,11 @@ export interface BlockListGenqlSelection{
     _title?: boolean | number
     on_Brands?: BrandsGenqlSelection
     on_Categories?: CategoriesGenqlSelection
+    on_Tags?: TagsGenqlSelection
     on_Vault?: VaultGenqlSelection
     on_brandItemComponent_AsList?: brandItemComponent_AsListGenqlSelection
     on_categoryItemComponent_AsList?: categoryItemComponent_AsListGenqlSelection
+    on_tagItemComponent_AsList?: tagItemComponent_AsListGenqlSelection
     on_vaultItem_AsList?: vaultItem_AsListGenqlSelection
     __typename?: boolean | number
     __fragmentOn?: "BlockList"
@@ -899,12 +965,12 @@ export interface CategoryItemComponentGenqlSelection{
     _slugPath?: boolean | number
     _sys?: BlockDocumentSysGenqlSelection
     _title?: boolean | number
-    categoryName?: boolean | number
+    name?: boolean | number
     __typename?: boolean | number
     __fragmentOn?: "CategoryItemComponent"
 }
 
-export interface CategoryItemComponentFilterInput {AND?: (CategoryItemComponentFilterInput | null),OR?: (CategoryItemComponentFilterInput | null),_id?: (StringFilter | null),_slug?: (StringFilter | null),_sys_apiNamePath?: (StringFilter | null),_sys_createdAt?: (DateFilter | null),_sys_hash?: (StringFilter | null),_sys_id?: (StringFilter | null),_sys_idPath?: (StringFilter | null),_sys_lastModifiedAt?: (DateFilter | null),_sys_slug?: (StringFilter | null),_sys_slugPath?: (StringFilter | null),_sys_title?: (StringFilter | null),_title?: (StringFilter | null),categoryName?: (StringFilter | null)}
+export interface CategoryItemComponentFilterInput {AND?: (CategoryItemComponentFilterInput | null),OR?: (CategoryItemComponentFilterInput | null),_id?: (StringFilter | null),_slug?: (StringFilter | null),_sys_apiNamePath?: (StringFilter | null),_sys_createdAt?: (DateFilter | null),_sys_hash?: (StringFilter | null),_sys_id?: (StringFilter | null),_sys_idPath?: (StringFilter | null),_sys_lastModifiedAt?: (DateFilter | null),_sys_slug?: (StringFilter | null),_sys_slugPath?: (StringFilter | null),_sys_title?: (StringFilter | null),_title?: (StringFilter | null),name?: (StringFilter | null)}
 
 export interface CategoryItemComponentSearchInput {
 /** Searchable fields for query */
@@ -936,6 +1002,8 @@ export interface IconsGenqlSelection{
     _slugPath?: boolean | number
     _sys?: BlockDocumentSysGenqlSelection
     _title?: boolean | number
+    arrowUpRight?: boolean | number
+    deleteLeftFilled?: boolean | number
     globePointer?: boolean | number
     magnifier?: boolean | number
     __typename?: boolean | number
@@ -1089,6 +1157,18 @@ export interface QueryGenqlSelection{
     skip?: (Scalars['Int'] | null)} })
     categoryItem?: CategoryItemComponentGenqlSelection
     icons?: IconsGenqlSelection
+    tagItem?: TagItemComponentGenqlSelection
+    tags?: (TagsGenqlSelection & { __args?: {
+    /** Filter by a field. */
+    filter?: (TagItemComponentFilterInput | null), 
+    /** Limit the number of items returned. Defaults to 500. */
+    first?: (Scalars['Int'] | null), 
+    /** Order by a field. */
+    orderBy?: (TagItemComponentOrderByEnum | null), 
+    /** Search configuration */
+    search?: (TagItemComponentSearchInput | null), 
+    /** Skip the first n items. */
+    skip?: (Scalars['Int'] | null)} })
     vault?: (VaultGenqlSelection & { __args?: {
     /** Filter by a field. */
     filter?: (VaultItemFilterInput | null), 
@@ -1139,6 +1219,62 @@ export interface SelectFilter {excludes?: (Scalars['String'] | null),excludesAll
 export interface StringFilter {contains?: (Scalars['String'] | null),endsWith?: (Scalars['String'] | null),eq?: (Scalars['String'] | null),in?: (Scalars['String'][] | null),isNull?: (Scalars['Boolean'] | null),matches?: (StringMatchesFilter | null),notEq?: (Scalars['String'] | null),notIn?: (Scalars['String'][] | null),startsWith?: (Scalars['String'] | null)}
 
 export interface StringMatchesFilter {caseSensitive?: (Scalars['Boolean'] | null),pattern: Scalars['String']}
+
+export interface TagItemComponentGenqlSelection{
+    _analyticsKey?: { __args: {
+    /**
+     * The scope of the analytics key. Use `send` for just ingesting data. Use `query` if you need to show an analytics data in your website.
+     * 
+     * Have in mind, if you expose your `query` analytics key in the frontend, you'll be exposing all of this block's analytics data to the public. This is generally safe, but it might not be in your case.
+     */
+    scope?: (AnalyticsKeyScope | null)} } | boolean | number
+    _dashboardUrl?: boolean | number
+    /** Array of search highlight information with field names and HTML markup */
+    _highlight?: SearchHighlightGenqlSelection
+    _id?: boolean | number
+    _idPath?: boolean | number
+    _slug?: boolean | number
+    _slugPath?: boolean | number
+    _sys?: BlockDocumentSysGenqlSelection
+    _title?: boolean | number
+    name?: boolean | number
+    __typename?: boolean | number
+    __fragmentOn?: "TagItemComponent"
+}
+
+export interface TagItemComponentFilterInput {AND?: (TagItemComponentFilterInput | null),OR?: (TagItemComponentFilterInput | null),_id?: (StringFilter | null),_slug?: (StringFilter | null),_sys_apiNamePath?: (StringFilter | null),_sys_createdAt?: (DateFilter | null),_sys_hash?: (StringFilter | null),_sys_id?: (StringFilter | null),_sys_idPath?: (StringFilter | null),_sys_lastModifiedAt?: (DateFilter | null),_sys_slug?: (StringFilter | null),_sys_slugPath?: (StringFilter | null),_sys_title?: (StringFilter | null),_title?: (StringFilter | null),name?: (StringFilter | null)}
+
+export interface TagItemComponentSearchInput {
+/** Searchable fields for query */
+by?: (Scalars['String'][] | null),
+/** Search query */
+q?: (Scalars['String'] | null)}
+
+export interface TagsGenqlSelection{
+    _analyticsKey?: { __args: {
+    /**
+     * The scope of the analytics key. Use `send` for just ingesting data. Use `query` if you need to show an analytics data in your website.
+     * 
+     * Have in mind, if you expose your `query` analytics key in the frontend, you'll be exposing all of this block's analytics data to the public. This is generally safe, but it might not be in your case.
+     */
+    scope?: (AnalyticsKeyScope | null)} } | boolean | number
+    _dashboardUrl?: boolean | number
+    _id?: boolean | number
+    _idPath?: boolean | number
+    _meta?: ListMetaGenqlSelection
+    /** The key used to search from the frontend. */
+    _searchKey?: boolean | number
+    _slug?: boolean | number
+    _slugPath?: boolean | number
+    _sys?: BlockDocumentSysGenqlSelection
+    _title?: boolean | number
+    /** Returns the first item in the list, or null if the list is empty. Useful when you expect only one result. */
+    item?: TagItemComponentGenqlSelection
+    /** Returns the list of items after filtering and paginating according to the arguments sent by the client. */
+    items?: TagItemComponentGenqlSelection
+    __typename?: boolean | number
+    __fragmentOn?: "Tags"
+}
 
 export interface TargetBlock {focus?: (Scalars['Boolean'] | null),id: Scalars['String'],label: Scalars['String']}
 
@@ -1213,16 +1349,19 @@ export interface VaultItemGenqlSelection{
     image?: MediaBlockUnionGenqlSelection
     price?: boolean | number
     sourceUrl?: boolean | number
+    tags?: TagItemComponentGenqlSelection
     title?: boolean | number
     __typename?: boolean | number
     __fragmentOn?: "VaultItem"
 }
 
-export interface VaultItemFilterInput {AND?: (VaultItemFilterInput | null),OR?: (VaultItemFilterInput | null),_id?: (StringFilter | null),_slug?: (StringFilter | null),_sys_apiNamePath?: (StringFilter | null),_sys_createdAt?: (DateFilter | null),_sys_hash?: (StringFilter | null),_sys_id?: (StringFilter | null),_sys_idPath?: (StringFilter | null),_sys_lastModifiedAt?: (DateFilter | null),_sys_slug?: (StringFilter | null),_sys_slugPath?: (StringFilter | null),_sys_title?: (StringFilter | null),_title?: (StringFilter | null),brands?: (VaultItemFilterInput__brands_0___brandItem | null),categories?: (VaultItemFilterInput__categories_0___categoryItem | null),description?: (StringFilter | null),price?: (NumberFilter | null),sourceUrl?: (StringFilter | null),title?: (StringFilter | null)}
+export interface VaultItemFilterInput {AND?: (VaultItemFilterInput | null),OR?: (VaultItemFilterInput | null),_id?: (StringFilter | null),_slug?: (StringFilter | null),_sys_apiNamePath?: (StringFilter | null),_sys_createdAt?: (DateFilter | null),_sys_hash?: (StringFilter | null),_sys_id?: (StringFilter | null),_sys_idPath?: (StringFilter | null),_sys_lastModifiedAt?: (DateFilter | null),_sys_slug?: (StringFilter | null),_sys_slugPath?: (StringFilter | null),_sys_title?: (StringFilter | null),_title?: (StringFilter | null),brands?: (VaultItemFilterInput__brands_0___brandItem | null),categories?: (VaultItemFilterInput__categories_0___categoryItem | null),description?: (StringFilter | null),price?: (NumberFilter | null),sourceUrl?: (StringFilter | null),tags?: (VaultItemFilterInput__tags_0___tagItem | null),title?: (StringFilter | null)}
 
 export interface VaultItemFilterInput__brands_0___brandItem {_id?: (StringFilter | null),_slug?: (StringFilter | null),_sys_apiNamePath?: (StringFilter | null),_sys_createdAt?: (DateFilter | null),_sys_hash?: (StringFilter | null),_sys_id?: (StringFilter | null),_sys_idPath?: (StringFilter | null),_sys_lastModifiedAt?: (DateFilter | null),_sys_slug?: (StringFilter | null),_sys_slugPath?: (StringFilter | null),_sys_title?: (StringFilter | null),_title?: (StringFilter | null),name?: (StringFilter | null)}
 
-export interface VaultItemFilterInput__categories_0___categoryItem {_id?: (StringFilter | null),_slug?: (StringFilter | null),_sys_apiNamePath?: (StringFilter | null),_sys_createdAt?: (DateFilter | null),_sys_hash?: (StringFilter | null),_sys_id?: (StringFilter | null),_sys_idPath?: (StringFilter | null),_sys_lastModifiedAt?: (DateFilter | null),_sys_slug?: (StringFilter | null),_sys_slugPath?: (StringFilter | null),_sys_title?: (StringFilter | null),_title?: (StringFilter | null),categoryName?: (StringFilter | null)}
+export interface VaultItemFilterInput__categories_0___categoryItem {_id?: (StringFilter | null),_slug?: (StringFilter | null),_sys_apiNamePath?: (StringFilter | null),_sys_createdAt?: (DateFilter | null),_sys_hash?: (StringFilter | null),_sys_id?: (StringFilter | null),_sys_idPath?: (StringFilter | null),_sys_lastModifiedAt?: (DateFilter | null),_sys_slug?: (StringFilter | null),_sys_slugPath?: (StringFilter | null),_sys_title?: (StringFilter | null),_title?: (StringFilter | null),name?: (StringFilter | null)}
+
+export interface VaultItemFilterInput__tags_0___tagItem {_id?: (StringFilter | null),_slug?: (StringFilter | null),_sys_apiNamePath?: (StringFilter | null),_sys_createdAt?: (DateFilter | null),_sys_hash?: (StringFilter | null),_sys_id?: (StringFilter | null),_sys_idPath?: (StringFilter | null),_sys_lastModifiedAt?: (DateFilter | null),_sys_slug?: (StringFilter | null),_sys_slugPath?: (StringFilter | null),_sys_title?: (StringFilter | null),_title?: (StringFilter | null),name?: (StringFilter | null)}
 
 export interface VaultItemSearchInput {
 /** Searchable fields for query */
@@ -1361,6 +1500,17 @@ export interface _componentsGenqlSelection{
     search?: (CategoryItemComponentSearchInput | null), 
     /** Skip the first n items. */
     skip?: (Scalars['Int'] | null)} })
+    tagItem?: (tagItemComponent_AsListGenqlSelection & { __args?: {
+    /** Filter by a field. */
+    filter?: (TagItemComponentFilterInput | null), 
+    /** Limit the number of items returned. Defaults to 500. */
+    first?: (Scalars['Int'] | null), 
+    /** Order by a field. */
+    orderBy?: (TagItemComponentOrderByEnum | null), 
+    /** Search configuration */
+    search?: (TagItemComponentSearchInput | null), 
+    /** Skip the first n items. */
+    skip?: (Scalars['Int'] | null)} })
     vaultItem?: (vaultItem_AsListGenqlSelection & { __args?: {
     /** Filter by a field. */
     filter?: (VaultItemFilterInput | null), 
@@ -1426,6 +1576,32 @@ export interface categoryItemComponent_AsListGenqlSelection{
     items?: CategoryItemComponentGenqlSelection
     __typename?: boolean | number
     __fragmentOn?: "categoryItemComponent_AsList"
+}
+
+export interface tagItemComponent_AsListGenqlSelection{
+    _analyticsKey?: { __args: {
+    /**
+     * The scope of the analytics key. Use `send` for just ingesting data. Use `query` if you need to show an analytics data in your website.
+     * 
+     * Have in mind, if you expose your `query` analytics key in the frontend, you'll be exposing all of this block's analytics data to the public. This is generally safe, but it might not be in your case.
+     */
+    scope?: (AnalyticsKeyScope | null)} } | boolean | number
+    _dashboardUrl?: boolean | number
+    _id?: boolean | number
+    _idPath?: boolean | number
+    _meta?: ListMetaGenqlSelection
+    /** The key used to search from the frontend. */
+    _searchKey?: boolean | number
+    _slug?: boolean | number
+    _slugPath?: boolean | number
+    _sys?: BlockDocumentSysGenqlSelection
+    _title?: boolean | number
+    /** Returns the first item in the list, or null if the list is empty. Useful when you expect only one result. */
+    item?: TagItemComponentGenqlSelection
+    /** Returns the list of items after filtering and paginating according to the arguments sent by the client. */
+    items?: TagItemComponentGenqlSelection
+    __typename?: boolean | number
+    __fragmentOn?: "tagItemComponent_AsList"
 }
 
 export interface vaultItem_AsListGenqlSelection{
@@ -1555,6 +1731,14 @@ export interface FragmentsMap {
     root: SearchHighlight,
     selection: SearchHighlightGenqlSelection,
 }
+  TagItemComponent: {
+    root: TagItemComponent,
+    selection: TagItemComponentGenqlSelection,
+}
+  Tags: {
+    root: Tags,
+    selection: TagsGenqlSelection,
+}
   TransactionStatus: {
     root: TransactionStatus,
     selection: TransactionStatusGenqlSelection,
@@ -1610,6 +1794,10 @@ export interface FragmentsMap {
   categoryItemComponent_AsList: {
     root: categoryItemComponent_AsList,
     selection: categoryItemComponent_AsListGenqlSelection,
+}
+  tagItemComponent_AsList: {
+    root: tagItemComponent_AsList,
+    selection: tagItemComponent_AsListGenqlSelection,
 }
   vaultItem_AsList: {
     root: vaultItem_AsList,

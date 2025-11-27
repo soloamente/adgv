@@ -12,6 +12,7 @@ import { filterVaultItems } from "../utils"
 import { VaultEmptyState } from "./vault-empty-state"
 import { VaultGrid } from "./vault-grid"
 import { VaultSearchBar } from "./vault-search-bar"
+import { VaultTabs } from "./vault-tabs"
 
 interface VaultPageContentProps {
   /**
@@ -23,6 +24,8 @@ interface VaultPageContentProps {
    */
   magnifierIcon?: string
   globePointerIcon?: string
+  arrowUpRightIcon?: string
+  deleteLeftFilledIcon?: string
 }
 
 /**
@@ -33,6 +36,8 @@ export function VaultPageContent({
   items,
   magnifierIcon,
   globePointerIcon,
+  arrowUpRightIcon,
+  deleteLeftFilledIcon,
 }: VaultPageContentProps) {
   const [searchQuery, setSearchQuery] = useState("")
 
@@ -40,13 +45,16 @@ export function VaultPageContent({
   const filteredItems = useMemo(() => filterVaultItems(items, searchQuery), [items, searchQuery])
 
   return (
-    <main className="font-sf-pro-rounded container mx-auto flex min-h-screen flex-col items-center gap-8 px-4 py-8 md:px-8">
-      {/* Search Bar */}
-      <VaultSearchBar
-        placeholder="Search..."
-        iconContent={magnifierIcon}
-        onSearchChange={setSearchQuery}
-      />
+    <main className="font-sf-pro-rounded flex min-h-screen flex-col items-center gap-4 px-4 py-8 md:px-8">
+      <div className="flex w-full items-center justify-between gap-2">
+        {/* Header */}
+        <VaultTabs />
+        <VaultSearchBar
+          placeholder="Search..."
+          iconContent={deleteLeftFilledIcon}
+          onSearchChange={setSearchQuery}
+        />
+      </div>
 
       {/* Content */}
       {filteredItems.length === 0 ? (
@@ -58,7 +66,7 @@ export function VaultPageContent({
           }
         />
       ) : (
-        <VaultGrid items={filteredItems} iconContent={globePointerIcon} />
+        <VaultGrid items={filteredItems} iconContent={arrowUpRightIcon} />
       )}
     </main>
   )

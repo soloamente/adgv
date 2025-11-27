@@ -2,8 +2,7 @@
  * Vault Page Queries
  * @description BaseHub query definitions for the vault page
  */
-
-import type { QueryGenqlSelection } from "basehub";
+import type { QueryGenqlSelection } from "basehub"
 
 /**
  * BaseHub query selection for vault page
@@ -13,6 +12,8 @@ export const vaultPageQuery: QueryGenqlSelection = {
   icons: {
     magnifier: true,
     globePointer: true,
+    arrowUpRight: true,
+    deleteLeftFilled: true,
   },
   vault: {
     items: {
@@ -41,6 +42,11 @@ export const vaultPageQuery: QueryGenqlSelection = {
           fileName: true,
         },
       },
+      tags: {
+        _id: true,
+        _title: true,
+        name: true,
+      },
       brands: {
         _id: true,
         _title: true,
@@ -49,8 +55,8 @@ export const vaultPageQuery: QueryGenqlSelection = {
       categories: {
         _id: true,
         _title: true,
+        name: true,
       },
     },
   },
-};
-
+}
